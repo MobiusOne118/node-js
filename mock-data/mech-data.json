@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Locust",
+    "weight": 20
+  },
+  {
+    "name": "Commando",
+    "weight": 25
+  }
+]
