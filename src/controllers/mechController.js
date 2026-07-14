@@ -1,23 +1,12 @@
 // Logic for request
 // Data from file/server/database etc
 
-// import jsonData from '../../mock-data/mech-data.json';
+import { readFile } from 'fs/promises';
 
-const mockData = [
-  {
-    name: 'Locust',
-    class: 'small' 
-  },
-  {
-    name: 'Commando',
-    class: 'small'
-  }
-];
-
-const getMechs = (req, res) => {
-  const payload = mockData;
-  
-  res.end(JSON.stringify(payload));
+async function getMechs(req, res) {
+  const raw = await readFile('./mock-data/mech-data.json', 'utf-8');
+  const jsonData = JSON.parse(raw);
+  res.end(JSON.stringify(jsonData));
 };
 
 export { getMechs };

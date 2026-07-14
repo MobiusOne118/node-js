@@ -4,13 +4,16 @@ import { mechsRoutes } from './src/routes/mech.js'
 const hostname = 'localhost';
 const port = 8080;
 
-const server = createServer((req, res) => {
+//
+// Using async here to mock promise.
+//
+const server = createServer(async (req, res) => {
   res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/html');
+  res.setHeader('Content-Type', 'application/json');
 
   // Direct to route
   if(req.url.startsWith('/mechs')) {
-    mechsRoutes(req, res);
+    await mechsRoutes(req, res);
   } else {
     res.writeHead(200);
     res.end('Server: No route selected');

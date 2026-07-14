@@ -1,8 +1,8 @@
 import { getMechs } from '../controllers/mechController.js';
 
-const mechsRoutes = (req, res) => {
+const mechsRoutes = async (req, res) => {
   if (req.method === 'GET' && req.url === '/mechs') {
-    getMechs(req, res);
+    await getMechs(req, res);
   }
 };
 
