@@ -29,10 +29,15 @@ async function addMech(req, res) {
   const raw = await readFile('./mock-data/mech-data.json', 'utf-8');
   const mechs = JSON.parse(raw);
   const newMech = { name, weight };
-  mechs.push(newMech);
+  const existingIndex = mechs.findIndex((mech) => mech.name === name);
+  if (existingIndex === -1) {
+    mechs.push(newMech);
+  } else {
+    mechs[existingIndex] = newMech;
+  }
   await writeFile('./mock-data/mech-data.json', JSON.stringify(mechs, null, 2));
 
-  res.statusCode = 201;
+  res.statusCode = existingIndex === -1 ? 201 : 200;
   res.end(JSON.stringify(newMech));
 };
 
