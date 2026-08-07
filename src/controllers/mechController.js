@@ -19,16 +19,16 @@ async function addMech(req, res) {
     return;
   }
 
-  const { name, weight } = body;
-  if (typeof name !== 'string' || typeof weight !== 'number') {
+  const { name, weight, speed = 0 } = body;
+  if (typeof name !== 'string' || typeof weight !== 'number' || typeof speed !== 'number') {
     res.statusCode = 400;
-    res.end(JSON.stringify({ error: 'name must be a string and weight must be a number' }));
+    res.end(JSON.stringify({ error: 'name must be a string, weight must be a number, and speed must be a number' }));
     return;
   }
 
   const raw = await readFile('./mock-data/mech-data.json', 'utf-8');
   const mechs = JSON.parse(raw);
-  const newMech = { name, weight };
+  const newMech = { name, weight, speed };
   const existingIndex = mechs.findIndex((mech) => mech.name === name);
   if (existingIndex === -1) {
     mechs.push(newMech);
