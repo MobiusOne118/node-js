@@ -9,7 +9,7 @@ const port = 8080;
 //
 const server = createServer(async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.setHeader('Access-Control-Allow-Methods', 'GET');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
   res.setHeader('Content-Type', 'application/json');
   res.statusCode = 200;
 
